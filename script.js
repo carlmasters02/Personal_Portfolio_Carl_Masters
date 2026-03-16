@@ -32,13 +32,16 @@ const navLinksEl = document.querySelector('.nav-links');
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   navLinksEl.classList.toggle('mobile-open');
-  document.body.style.overflow = navLinksEl.classList.contains('mobile-open') ? 'hidden' : '';
+  const isOpen = navLinksEl.classList.contains('mobile-open');
+  navbar.classList.toggle('menu-open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
 navLinksEl.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('open');
     navLinksEl.classList.remove('mobile-open');
+    navbar.classList.remove('menu-open');
     document.body.style.overflow = '';
   });
 });
@@ -50,6 +53,7 @@ document.addEventListener('click', e => {
       !hamburger.contains(e.target)) {
     hamburger.classList.remove('open');
     navLinksEl.classList.remove('mobile-open');
+    navbar.classList.remove('menu-open');
     document.body.style.overflow = '';
   }
 });

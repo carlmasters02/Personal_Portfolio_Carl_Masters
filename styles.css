@@ -73,6 +73,12 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 1px 0 var(--border);
 }
 
+#navbar.menu-open {
+  background: rgba(13, 15, 20, 0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border);
+}
+
 .nav-container {
   max-width: var(--max-w);
   margin: 0 auto;
