@@ -47,7 +47,7 @@ navLinksEl.querySelectorAll('a').forEach(link => {
 document.addEventListener('click', e => {
   if (navLinksEl.classList.contains('mobile-open') &&
       !navLinksEl.contains(e.target) &&
-      e.target !== hamburger) {
+      !hamburger.contains(e.target)) {
     hamburger.classList.remove('open');
     navLinksEl.classList.remove('mobile-open');
     document.body.style.overflow = '';
