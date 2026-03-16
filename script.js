@@ -6,9 +6,12 @@
 
 /* ---- Navbar scroll effect ---- */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
+const syncNavbarScrollState = () => {
+  if (navbar.classList.contains('menu-open')) return;
   navbar.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+};
+window.addEventListener('scroll', syncNavbarScrollState, { passive: true });
+syncNavbarScrollState();
 
 /* ---- Active nav link on scroll ---- */
 const sections = document.querySelectorAll('section[id]');
@@ -29,21 +32,29 @@ window.addEventListener('scroll', setActiveLink, { passive: true });
 const hamburger = document.getElementById('hamburger');
 const navLinksEl = document.querySelector('.nav-links');
 
+const closeMobileMenu = () => {
+  hamburger.classList.remove('open');
+  navLinksEl.classList.remove('mobile-open');
+  navbar.classList.remove('menu-open');
+  document.body.style.overflow = '';
+  syncNavbarScrollState();
+};
+
 hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  navLinksEl.classList.toggle('mobile-open');
-  const isOpen = navLinksEl.classList.contains('mobile-open');
-  navbar.classList.toggle('menu-open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+  const isOpening = !navLinksEl.classList.contains('mobile-open');
+  if (isOpening) {
+    hamburger.classList.add('open');
+    navLinksEl.classList.add('mobile-open');
+    navbar.classList.remove('scrolled');
+    navbar.classList.add('menu-open');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+  closeMobileMenu();
 });
 
 navLinksEl.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    navLinksEl.classList.remove('mobile-open');
-    navbar.classList.remove('menu-open');
-    document.body.style.overflow = '';
-  });
+  link.addEventListener('click', closeMobileMenu);
 });
 
 /* ---- Smooth-close mobile menu on outside click ---- */
@@ -51,10 +62,7 @@ document.addEventListener('click', e => {
   if (navLinksEl.classList.contains('mobile-open') &&
       !navLinksEl.contains(e.target) &&
       !hamburger.contains(e.target)) {
-    hamburger.classList.remove('open');
-    navLinksEl.classList.remove('mobile-open');
-    navbar.classList.remove('menu-open');
-    document.body.style.overflow = '';
+    closeMobileMenu();
   }
 });
 
