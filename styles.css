@@ -869,7 +869,16 @@ img { max-width: 100%; display: block; }
 
   .form-row { grid-template-columns: 1fr; }
 
-  .about-stats { flex-direction: column; gap: 1.25rem; align-items: flex-start; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .stat p {
+    font-size: 0.74rem;
+  }
 
   .contact-links {
     flex-direction: column;
