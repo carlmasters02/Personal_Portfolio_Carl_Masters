@@ -74,9 +74,9 @@ img { max-width: 100%; display: block; }
 }
 
 #navbar.menu-open {
-  background: rgba(13, 15, 20, 0.96);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 var(--border);
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .nav-container {
@@ -825,7 +825,7 @@ img { max-width: 100%; display: block; }
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    z-index: 999;
+    z-index: 1002;
     padding: 1.25rem;
   }
 
@@ -836,7 +836,7 @@ img { max-width: 100%; display: block; }
 
   .nav-links.mobile-open a::after { display: none; }
 
-  .hamburger { display: flex; z-index: 1001; }
+  .hamburger { display: flex; z-index: 1003; }
 
   .hero {
     min-height: 92svh;
