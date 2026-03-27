@@ -660,6 +660,34 @@ img { max-width: 100%; display: block; }
   border-radius: 99px;
 }
 
+.hackathon-boxes {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.hackathon-box {
+  background: rgba(108, 99, 255, 0.08);
+  border: 1px solid rgba(108, 99, 255, 0.28);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem;
+}
+
+.hackathon-box h4 {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.hackathon-box p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
 /* =============================================
    CONTACT
    ============================================= */
@@ -872,6 +900,10 @@ img { max-width: 100%; display: block; }
   .code-block pre {
     padding: 1rem;
     line-height: 1.6;
+  }
+
+  .hackathon-boxes {
+    grid-template-columns: 1fr;
   }
 
   .form-row { grid-template-columns: 1fr; }
